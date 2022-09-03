@@ -1,5 +1,5 @@
-from django.shortcuts import render
+from django.http import HttpResponse
 
 
-class Views(render):
-    pass
+def index(request):
+    return HttpResponse('<meta http-equiv="refresh" content="0; URL=/admin" />')

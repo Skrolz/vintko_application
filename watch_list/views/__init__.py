@@ -1,1 +1,1 @@
-from .views import Views
+from .views import index

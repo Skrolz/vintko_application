@@ -30,7 +30,7 @@ class Value(models.Model):
 
     watch = models.ForeignKey(
         Watch,
-        blank=False,
-        null=False,
+        blank=True,
+        null=True,
         on_delete=models.CASCADE,
     )

@@ -1,6 +1,6 @@
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
-from . import Brand, MovementType
+from . import Brand, MovementType, MaterialType
 
 class Watch(models.Model):
     band_material = models.CharField(
@@ -16,10 +16,11 @@ class Watch(models.Model):
         on_delete=models.CASCADE,
     )
 
-    case_material = models.CharField(
+    case_material = models.ForeignKey(
+        MaterialType,
         blank=True,
         null=True,
-        max_length=64,
+        on_delete=models.CASCADE,
     )
 
     case_thickness = models.PositiveIntegerField(
@@ -94,6 +95,12 @@ class Watch(models.Model):
         max_length=64,
     )
 
+    serial_number = models.CharField(
+        blank=True,
+        null=True,
+        max_length=64,
+    )
+
     year = models.PositiveSmallIntegerField(
         blank=True,
         null=True,
@@ -104,7 +111,7 @@ class Watch(models.Model):
     )
 
     def __str__(self):
-        return '%s %s %s' % (self.year, self.brand, self.model,)
+        return '%s %s %s' % (self.year, self.brand, self.reference_number or '',)
 
     class Meta:
         verbose_name_plural = "watches"

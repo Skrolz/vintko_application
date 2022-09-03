@@ -3,6 +3,6 @@ from watch_list.models import Watch
 
 
 class WatchInline(admin.TabularInline):
-    fields = ('year', 'model', 'reference_number', 'movement_type', 'case_material', 'case_thickness', 'is_visible',)
+    fields = ('year', 'model', 'reference_number', 'movement_type', 'case_material', 'is_visible',)
     extra = 1
     model = Watch
