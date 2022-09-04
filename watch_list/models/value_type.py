@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class ValueType(models.Model):
     name = models.CharField(
         blank=False,
