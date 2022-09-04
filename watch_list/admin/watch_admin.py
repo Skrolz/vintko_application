@@ -5,19 +5,27 @@ from watch_list.inlines import ImageInline, ValueInline
 
 @admin.register(Watch)
 class WatchAdmin(admin.ModelAdmin):
-    fields = (
-        ('brand',
-        'model',
-        'movement_type',),
-        'year',
-        ('case_material',
-        'band_material',),
-        ('case_width',
-        'case_thickness',
-        'lug_width',
-        'lug_to_lug',),
-        'description',
-        'is_visible',
+    fieldsets = (
+        (None, {
+            'fields': (
+                ('brand',
+                'model',
+                'movement_type',),
+                'year',
+                ('case_material',
+                'band_material',),
+                ('case_width',
+                'case_thickness',
+                'lug_width',
+                'lug_to_lug',),
+                'description',
+                'is_visible',
+            )
+        }),
+        ('Save Info', {
+            'classes': ('collapse',),
+            'fields': ('modified', 'created'),
+        }),
     )
     inlines = [ValueInline, ImageInline,]
     list_display  = (
@@ -29,3 +37,5 @@ class WatchAdmin(admin.ModelAdmin):
         'case_width',
         'is_visible',
     )
+    ordering = ['brand', 'model',]
+    readonly_fields = ('modified', 'created',)

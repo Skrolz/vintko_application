@@ -4,11 +4,20 @@ from watch_list.models import Value
 
 @admin.register(Value)
 class ValueAdmin(admin.ModelAdmin):
-    fields = (
-        'watch',
-        'type',
-        'amount',
-        'date',
+    fieldsets = (
+        (None, {
+            'fields': (
+                'watch',
+                'type',
+                'description',
+                'amount',
+                'date',
+            )
+        }),
+        ('Save Info', {
+            'classes': ('collapse',),
+            'fields': ('modified', 'created',),
+        }),
     )
     list_display  = (
         'watch',
@@ -16,3 +25,5 @@ class ValueAdmin(admin.ModelAdmin):
         'amount',
         'date',
     )
+    ordering = ['-date',]
+    readonly_fields = ('modified', 'created',)

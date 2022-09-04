@@ -5,6 +5,16 @@ from watch_list.inlines import BrandInline
 
 @admin.register(Country)
 class CountryAdmin(admin.ModelAdmin):
-    fields = ('name',)
+    fieldsets = (
+        (None, {
+            'fields': ('name',)
+        }),
+        ('Save info', {
+            'classes': ('collapse',),
+            'fields': ('modified', 'created',),
+        }),
+    )
     inlines = [BrandInline,]
     list_display  = ('name',)
+    ordering = ['name',]
+    readonly_fields = ('modified', 'created',)
