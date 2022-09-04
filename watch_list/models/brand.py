@@ -4,13 +4,13 @@ from resource.models import Country
 
 class Brand(models.Model):
 
-    created = models.DateField(
+    created = models.DateTimeField(
         auto_now_add=True,
         blank=False,
         null=False,
     )
 
-    modified = models.DateField(
+    modified = models.DateTimeField(
         auto_now=True,
         blank=False,
         null=False,
