@@ -7,7 +7,7 @@ class Brand(models.Model):
         Country,
         blank=False,
         null=False,
-        on_delete=models.CASCADE,
+        on_delete=models.PROTECT,
     )
 
     name = models.CharField(

@@ -3,24 +3,26 @@ from django.db import models
 from . import Brand, MovementType, MaterialType
 
 class Watch(models.Model):
-    band_material = models.CharField(
+    band_material = models.ForeignKey(
+        MaterialType,
         blank=True,
         null=True,
-        max_length=64,
+        on_delete=models.PROTECT,
+        related_name='watch_band_material_type'
     )
 
     brand = models.ForeignKey(
         Brand,
         blank=False,
         null=False,
-        on_delete=models.CASCADE,
+        on_delete=models.PROTECT,
     )
 
     case_material = models.ForeignKey(
         MaterialType,
         blank=True,
         null=True,
-        on_delete=models.CASCADE,
+        on_delete=models.PROTECT,
     )
 
     case_thickness = models.PositiveIntegerField(
@@ -43,13 +45,15 @@ class Watch(models.Model):
 
     dial_description = models.CharField(
         blank=True,
-        null=True,
+        null=False,
+        default="",
         max_length=512,
     )
 
     description = models.TextField(
         blank=True,
-        null=True,
+        null=False,
+        default="",
         max_length=2048,
     )
 
@@ -78,7 +82,8 @@ class Watch(models.Model):
 
     model = models.CharField(
         blank=True,
-        null=True,
+        null=False,
+        default="",
         max_length=64,
     )
 
@@ -86,18 +91,20 @@ class Watch(models.Model):
         MovementType,
         blank=True,
         null=True,
-        on_delete=models.CASCADE,
+        on_delete=models.PROTECT,
     )
 
     reference_number = models.CharField(
         blank=True,
-        null=True,
+        null=False,
+        default="",
         max_length=64,
     )
 
     serial_number = models.CharField(
         blank=True,
-        null=True,
+        null=False,
+        default="",
         max_length=64,
     )
 

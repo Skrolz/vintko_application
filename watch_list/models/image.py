@@ -4,7 +4,8 @@ from . import Watch
 class Image(models.Model):
     description = models.TextField(
         blank=True,
-        null=True,
+        null=False,
+        default="",
         max_length=2048,
     )
 
@@ -24,5 +25,5 @@ class Image(models.Model):
         Watch,
         blank=False,
         null=False,
-        on_delete=models.CASCADE,
+        on_delete=models.PROTECT,
     )

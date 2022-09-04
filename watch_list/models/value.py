@@ -17,7 +17,8 @@ class Value(models.Model):
 
     description = models.TextField(
         blank=True,
-        null=True,
+        null=False,
+        default="",
         max_length=2048
     )
 
@@ -25,12 +26,12 @@ class Value(models.Model):
         ValueType,
         blank=False,
         null=False,
-        on_delete=models.CASCADE
+        on_delete=models.PROTECT
     )
 
     watch = models.ForeignKey(
         Watch,
         blank=True,
         null=True,
-        on_delete=models.CASCADE,
+        on_delete=models.PROTECT,
     )
