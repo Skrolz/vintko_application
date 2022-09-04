@@ -2,6 +2,19 @@ from django.db import models
 from . import ValueType, Watch
 
 class Value(models.Model):
+
+    created = models.DateField(
+        auto_now_add=True,
+        blank=False,
+        null=False,
+    )
+
+    modified = models.DateField(
+        auto_now=True,
+        blank=False,
+        null=False,
+    )
+
     amount = models.DecimalField(
         blank=False,
         null=False,

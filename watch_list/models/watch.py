@@ -3,6 +3,19 @@ from django.db import models
 from . import Brand, MovementType, MaterialType
 
 class Watch(models.Model):
+
+    created = models.DateField(
+        auto_now_add=True,
+        blank=False,
+        null=False,
+    )
+
+    modified = models.DateField(
+        auto_now=True,
+        blank=False,
+        null=False,
+    )
+
     band_material = models.ForeignKey(
         MaterialType,
         blank=True,

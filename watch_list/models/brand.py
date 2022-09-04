@@ -3,6 +3,19 @@ from resource.models import Country
 
 
 class Brand(models.Model):
+
+    created = models.DateField(
+        auto_now_add=True,
+        blank=False,
+        null=False,
+    )
+
+    modified = models.DateField(
+        auto_now=True,
+        blank=False,
+        null=False,
+    )
+
     country = models.ForeignKey(
         Country,
         blank=False,

@@ -2,6 +2,19 @@ from django.db import models
 from . import Watch
 
 class Image(models.Model):
+
+    created = models.DateField(
+        auto_now_add=True,
+        blank=False,
+        null=False,
+    )
+
+    modified = models.DateField(
+        auto_now=True,
+        blank=False,
+        null=False,
+    )
+
     description = models.TextField(
         blank=True,
         null=False,
