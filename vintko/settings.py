@@ -32,8 +32,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'resource.apps.ResourceConfig',
-    'watch_list.apps.WatchListConfig',
+    # 'resource.apps.ResourceConfig',
+    # 'watch_list.apps.WatchListConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
