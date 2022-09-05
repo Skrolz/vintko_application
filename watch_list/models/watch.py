@@ -1,6 +1,6 @@
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
-from . import Brand, MovementType, MaterialType
+
 
 class Watch(models.Model):
 
@@ -17,7 +17,7 @@ class Watch(models.Model):
     )
 
     band_material = models.ForeignKey(
-        MaterialType,
+        'watch_list.MaterialType',
         blank=True,
         null=True,
         on_delete=models.PROTECT,
@@ -25,14 +25,14 @@ class Watch(models.Model):
     )
 
     brand = models.ForeignKey(
-        Brand,
+        'watch_list.Brand',
         blank=False,
         null=False,
         on_delete=models.PROTECT,
     )
 
     case_material = models.ForeignKey(
-        MaterialType,
+        'watch_list.MaterialType',
         blank=True,
         null=True,
         on_delete=models.PROTECT,
@@ -101,7 +101,7 @@ class Watch(models.Model):
     )
 
     movement_type = models.ForeignKey(
-        MovementType,
+        'watch_list.MovementType',
         blank=True,
         null=True,
         on_delete=models.PROTECT,

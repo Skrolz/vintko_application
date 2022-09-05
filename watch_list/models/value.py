@@ -1,5 +1,5 @@
 from django.db import models
-from . import ValueType, Watch
+
 
 class Value(models.Model):
 
@@ -36,14 +36,14 @@ class Value(models.Model):
     )
 
     type = models.ForeignKey(
-        ValueType,
+        'watch_list.ValueType',
         blank=False,
         null=False,
         on_delete=models.PROTECT
     )
 
     watch = models.ForeignKey(
-        Watch,
+        'watch_list.Watch',
         blank=True,
         null=True,
         on_delete=models.PROTECT,

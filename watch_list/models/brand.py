@@ -1,5 +1,4 @@
 from django.db import models
-from resource.models import Country
 
 
 class Brand(models.Model):
@@ -17,7 +16,7 @@ class Brand(models.Model):
     )
 
     country = models.ForeignKey(
-        Country,
+        'resource.Country',
         blank=False,
         null=False,
         on_delete=models.PROTECT,

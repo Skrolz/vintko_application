@@ -1,5 +1,5 @@
 from django.db import models
-from . import Watch
+
 
 class Image(models.Model):
 
@@ -35,7 +35,7 @@ class Image(models.Model):
     )
 
     watch = models.ForeignKey(
-        Watch,
+        'watch_list.Watch',
         blank=False,
         null=False,
         on_delete=models.PROTECT,
