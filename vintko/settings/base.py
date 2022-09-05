@@ -70,8 +70,19 @@ WSGI_APPLICATION = 'vintko.wsgi.application'
 
 load_dotenv(find_dotenv())
 
+# DATABASES = {
+#     'default': dj_database_url.config(default='sqlite:///db.sqlite3', conn_max_age=600, ssl_require=False)
+# }
+
 DATABASES = {
-    'default': dj_database_url.config(default='sqlite:///db.sqlite3', conn_max_age=600, ssl_require=False)
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycorpg2',
+        'NAME': 'de3adasv41m5qc',
+        'USER': 'ohpqhlpatkopup',
+        'PASSWORD': '',
+        'HOST': 'ec2-3-219-19-205.compute-1.amazonaws.com',
+        'PORT': '5432'
+    }
 }
 
 
