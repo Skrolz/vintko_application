@@ -1,1 +1,1 @@
-web python manage.py migrate && gunicorn vintko.wsgi
+web: python manage.py migrate && gunicorn vintko.wsgi
