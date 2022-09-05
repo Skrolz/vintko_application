@@ -20,7 +20,7 @@ class Value(models.Model):
         null=False,
         decimal_places=2,
         default=0.00,
-        max_digits=8
+        max_digits=8,
     )
 
     date = models.DateField(
@@ -32,19 +32,19 @@ class Value(models.Model):
         blank=True,
         null=False,
         default="",
-        max_length=2048
+        max_length=2048,
     )
 
     type = models.ForeignKey(
         'watch_list.ValueType',
+        models.PROTECT,
         blank=False,
         null=False,
-        on_delete=models.PROTECT
     )
 
     watch = models.ForeignKey(
         'watch_list.Watch',
+        models.PROTECT,
         blank=True,
         null=True,
-        on_delete=models.PROTECT,
     )

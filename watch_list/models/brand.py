@@ -16,10 +16,10 @@ class Brand(models.Model):
     )
 
     country = models.ForeignKey(
-        'resource.Country',
+        'watch_list.Country',
+        models.PROTECT,
         blank=False,
         null=False,
-        on_delete=models.PROTECT,
     )
 
     name = models.CharField(

@@ -36,7 +36,7 @@ class Image(models.Model):
 
     watch = models.ForeignKey(
         'watch_list.Watch',
+        models.PROTECT,
         blank=False,
         null=False,
-        on_delete=models.PROTECT,
     )

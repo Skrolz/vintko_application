@@ -18,24 +18,24 @@ class Watch(models.Model):
 
     band_material = models.ForeignKey(
         'watch_list.MaterialType',
+        models.PROTECT,
         blank=True,
         null=True,
-        on_delete=models.PROTECT,
         related_name='watch_band_material_type'
     )
 
     brand = models.ForeignKey(
         'watch_list.Brand',
+        models.PROTECT,
         blank=False,
         null=False,
-        on_delete=models.PROTECT,
     )
 
     case_material = models.ForeignKey(
         'watch_list.MaterialType',
+        models.PROTECT,
         blank=True,
         null=True,
-        on_delete=models.PROTECT,
     )
 
     case_thickness = models.PositiveIntegerField(
@@ -43,7 +43,7 @@ class Watch(models.Model):
         null=True,
         validators=[
             MinValueValidator(2),
-            MaxValueValidator(128)
+            MaxValueValidator(128),
         ],
     )
 
@@ -52,15 +52,8 @@ class Watch(models.Model):
         null=True,
         validators=[
             MinValueValidator(2),
-            MaxValueValidator(128)
+            MaxValueValidator(128),
         ],
-    )
-
-    dial_description = models.CharField(
-        blank=True,
-        null=False,
-        default="",
-        max_length=512,
     )
 
     description = models.TextField(
@@ -68,6 +61,13 @@ class Watch(models.Model):
         null=False,
         default="",
         max_length=2048,
+    )
+
+    dial_description = models.CharField(
+        blank=True,
+        null=False,
+        default="",
+        max_length=512,
     )
 
     is_visible = models.BooleanField(
@@ -80,7 +80,7 @@ class Watch(models.Model):
         null=True,
         validators=[
             MinValueValidator(2),
-            MaxValueValidator(128)
+            MaxValueValidator(128),
         ]
     )
 
@@ -89,7 +89,7 @@ class Watch(models.Model):
         null=True,
         validators=[
             MinValueValidator(2),
-            MaxValueValidator(128)
+            MaxValueValidator(128),
         ]
     )
 
@@ -102,9 +102,9 @@ class Watch(models.Model):
 
     movement_type = models.ForeignKey(
         'watch_list.MovementType',
+        models.PROTECT,
         blank=True,
         null=True,
-        on_delete=models.PROTECT,
     )
 
     reference_number = models.CharField(
@@ -126,12 +126,12 @@ class Watch(models.Model):
         null=True,
         validators=[
             MinValueValidator(1024),
-            MaxValueValidator(2048)
+            MaxValueValidator(2048),
         ],
     )
 
     def __str__(self):
-        return '%s %s %s' % (self.year, self.brand, self.reference_number or '',)
+        return '%s %s %s' % (self.year, self.brand, self.reference_number or 'ID: ' + self.id,)
 
     class Meta:
         verbose_name_plural = "watches"

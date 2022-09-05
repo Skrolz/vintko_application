@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Country
+from watch_list.models import Country
 from watch_list.inlines import BrandInline
 
 
