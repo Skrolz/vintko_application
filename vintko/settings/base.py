@@ -76,7 +76,7 @@ load_dotenv(find_dotenv())
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycorpg2',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'de3adasv41m5qc',
         'USER': 'ohpqhlpatkopup',
         'PASSWORD': '',
