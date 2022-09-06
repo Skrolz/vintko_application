@@ -43,6 +43,10 @@ class WatchAdmin(admin.ModelAdmin):
     ordering = ['brand', 'model',]
     readonly_fields = ('modified_by', 'modified', 'created',)
 
+    def save_model(self, request, obj, form, change):
+        obj.modified_by = request.user
+        super().save_model(request, obj, form, change)
+
     def save_formset(self, request, form, formset, change):
         instances = formset.save(commit=False)
         for obj in formset.deleted_objects:

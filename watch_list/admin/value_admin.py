@@ -30,11 +30,6 @@ class ValueAdmin(admin.ModelAdmin):
     ordering = ['-date',]
     readonly_fields = ('modified_by', 'modified', 'created',)
 
-    def save_formset(self, request, form, formset, change):
-        instances = formset.save(commit=False)
-        for obj in formset.deleted_objects:
-            obj.delete()
-        for instance in instances:
-            instance.modified_by = request.user
-            instance.save()
-        formset.save_m2m()
+    def save_model(self, request, obj, form, change):
+        obj.modified_by = request.user
+        super().save_model(request, obj, form, change)
