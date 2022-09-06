@@ -32,6 +32,7 @@ class Image(models.Model):
     is_visible = models.BooleanField(
         blank=False,
         null=False,
+        default=True,
     )
 
     watch = models.ForeignKey(
@@ -40,3 +41,6 @@ class Image(models.Model):
         blank=False,
         null=False,
     )
+
+    def __str__(self):
+        return '{} | {}'.format(self.id, self.file,)

@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 
 
@@ -11,6 +12,13 @@ class Value(models.Model):
 
     modified = models.DateTimeField(
         auto_now=True,
+        blank=False,
+        null=False,
+    )
+
+    modified_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        models.PROTECT,
         blank=False,
         null=False,
     )
@@ -35,6 +43,13 @@ class Value(models.Model):
         max_length=2048,
     )
 
+    is_debit = models.BooleanField(
+        blank=False,
+        null=False,
+        default=False,
+        verbose_name="Debit?"
+    )
+
     type = models.ForeignKey(
         'watch_list.ValueType',
         models.PROTECT,
@@ -48,3 +63,6 @@ class Value(models.Model):
         blank=True,
         null=True,
     )
+
+    def __str__(self):
+        return '{} | {} ${}'.format(self.id, self.type.name, self.amount,)

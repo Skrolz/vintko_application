@@ -26,4 +26,4 @@ class Country(models.Model):
         verbose_name_plural = "countries"
 
     def __str__(self):
-        return '%s' % (self.name,)
+        return '{}'.format(self.name,)

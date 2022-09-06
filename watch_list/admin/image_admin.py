@@ -7,8 +7,8 @@ class ImageAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': (
-                'watch',
                 'file',
+                'watch',
                 'description',
                 'is_visible',
             )

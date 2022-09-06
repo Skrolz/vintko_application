@@ -1,8 +1,12 @@
-from django.core.validators import MaxValueValidator, MinValueValidator
+from datetime import date
+from django.conf import settings
 from django.db import models
 
 
 class Watch(models.Model):
+
+    MM_CHOICES = [(i,i) for i in range(5,65)]
+    YEAR_CHOICES = [(i,i) for i in range(1900,date.today().year+2)]
 
     created = models.DateTimeField(
         auto_now_add=True,
@@ -12,6 +16,13 @@ class Watch(models.Model):
 
     modified = models.DateTimeField(
         auto_now=True,
+        blank=False,
+        null=False,
+    )
+
+    modified_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        models.PROTECT,
         blank=False,
         null=False,
     )
@@ -38,22 +49,16 @@ class Watch(models.Model):
         null=True,
     )
 
-    case_thickness = models.PositiveIntegerField(
+    case_thickness = models.IntegerField(
         blank=True,
         null=True,
-        validators=[
-            MinValueValidator(2),
-            MaxValueValidator(128),
-        ],
+        choices=MM_CHOICES
     )
 
-    case_width = models.PositiveIntegerField(
+    case_width = models.IntegerField(
         blank=True,
         null=True,
-        validators=[
-            MinValueValidator(2),
-            MaxValueValidator(128),
-        ],
+        choices=MM_CHOICES
     )
 
     description = models.TextField(
@@ -73,24 +78,19 @@ class Watch(models.Model):
     is_visible = models.BooleanField(
         blank=False,
         null=False,
+        default=True,
     )
 
-    lug_to_lug = models.PositiveIntegerField(
+    lug_to_lug = models.IntegerField(
         blank=True,
         null=True,
-        validators=[
-            MinValueValidator(2),
-            MaxValueValidator(128),
-        ]
+        choices=MM_CHOICES
     )
 
-    lug_width = models.PositiveIntegerField(
+    lug_width = models.IntegerField(
         blank=True,
         null=True,
-        validators=[
-            MinValueValidator(2),
-            MaxValueValidator(128),
-        ]
+        choices=MM_CHOICES
     )
 
     model = models.CharField(
@@ -121,17 +121,14 @@ class Watch(models.Model):
         max_length=64,
     )
 
-    year = models.PositiveSmallIntegerField(
+    year = models.IntegerField(
         blank=True,
         null=True,
-        validators=[
-            MinValueValidator(1024),
-            MaxValueValidator(2048),
-        ],
+        choices=YEAR_CHOICES
     )
-
-    def __str__(self):
-        return '%s %s %s' % (self.year, self.brand, self.reference_number or 'ID: ' + self.id,)
 
     class Meta:
         verbose_name_plural = "watches"
+
+    def __str__(self):
+        return '{} | {} {} {}'.format(self.id, self.year or '', self.brand, self.reference_number or '',)

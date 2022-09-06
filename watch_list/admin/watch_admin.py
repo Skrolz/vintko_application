@@ -8,12 +8,15 @@ class WatchAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': (
-                ('brand',
-                'model',
-                'movement_type',),
                 'year',
+                'brand',
+                ('model',
+                'reference_number',
+                'serial_number',),
+                'movement_type',
                 ('case_material',
-                'band_material',),
+                'band_material',
+                'dial_description',),
                 ('case_width',
                 'case_thickness',
                 'lug_width',
@@ -24,7 +27,7 @@ class WatchAdmin(admin.ModelAdmin):
         }),
         ('Save Info', {
             'classes': ('collapse',),
-            'fields': ('modified', 'created'),
+            'fields': ('modified_by', 'modified', 'created'),
         }),
     )
     inlines = [ValueInline, ImageInline,]
@@ -38,4 +41,13 @@ class WatchAdmin(admin.ModelAdmin):
         'is_visible',
     )
     ordering = ['brand', 'model',]
-    readonly_fields = ('modified', 'created',)
+    readonly_fields = ('modified_by', 'modified', 'created',)
+
+    def save_formset(self, request, form, formset, change):
+        instances = formset.save(commit=False)
+        for obj in formset.deleted_objects:
+            obj.delete()
+        for instance in instances:
+            instance.modified_by = request.user
+            instance.save()
+        formset.save_m2m()
