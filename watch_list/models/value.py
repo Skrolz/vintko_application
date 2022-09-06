@@ -47,7 +47,6 @@ class Value(models.Model):
         blank=False,
         null=False,
         default=False,
-        verbose_name="Debit?"
     )
 
     type = models.ForeignKey(
