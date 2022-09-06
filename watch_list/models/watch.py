@@ -78,7 +78,7 @@ class Watch(models.Model):
     is_visible = models.BooleanField(
         blank=False,
         null=False,
-        default=True,
+        default=False,
     )
 
     lug_to_lug = models.IntegerField(

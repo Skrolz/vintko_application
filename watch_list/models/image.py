@@ -32,7 +32,7 @@ class Image(models.Model):
     is_visible = models.BooleanField(
         blank=False,
         null=False,
-        default=True,
+        default=False,
     )
 
     watch = models.ForeignKey(
