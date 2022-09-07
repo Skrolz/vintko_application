@@ -28,7 +28,7 @@ class Watch(models.Model):
     )
 
     band_material = models.ForeignKey(
-        'watch_list.MaterialType',
+        'watches.MaterialType',
         models.PROTECT,
         blank=True,
         null=True,
@@ -36,14 +36,14 @@ class Watch(models.Model):
     )
 
     brand = models.ForeignKey(
-        'watch_list.Brand',
+        'watches.Brand',
         models.PROTECT,
         blank=False,
         null=False,
     )
 
     case_material = models.ForeignKey(
-        'watch_list.MaterialType',
+        'watches.MaterialType',
         models.PROTECT,
         blank=True,
         null=True,
@@ -101,7 +101,7 @@ class Watch(models.Model):
     )
 
     movement_type = models.ForeignKey(
-        'watch_list.MovementType',
+        'watches.MovementType',
         models.PROTECT,
         blank=True,
         null=True,

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from watch_list.models import Brand
+from watches.models import Brand
 
 
 class BrandInline(admin.TabularInline):

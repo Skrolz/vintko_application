@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
-    path('', include('watch_list.urls')),
+    path('', include('watches.urls')),
     path('admin/', admin.site.urls),
 ]
 

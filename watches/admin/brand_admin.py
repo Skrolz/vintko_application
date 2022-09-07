@@ -1,6 +1,6 @@
 from django.contrib import admin
-from watch_list.models import Brand
-from watch_list.inlines import WatchInline
+from watches.models import Brand
+from watches.inlines import WatchInline
 
 
 @admin.register(Brand)

@@ -1,20 +1,18 @@
 from django.contrib import admin
-from watch_list.models import Country
-from watch_list.inlines import BrandInline
+from watches.models import MaterialType
 
 
-@admin.register(Country)
-class CountryAdmin(admin.ModelAdmin):
+@admin.register(MaterialType)
+class MaterialTypeAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': ('name',)
         }),
-        ('Save info', {
+        ('Save Info', {
             'classes': ('collapse',),
             'fields': ('modified', 'created',),
         }),
     )
-    inlines = [BrandInline,]
     list_display  = ('name',)
     ordering = ['name',]
     readonly_fields = ('modified', 'created',)

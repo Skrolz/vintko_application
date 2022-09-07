@@ -1,6 +1,6 @@
 from django.contrib import admin
-from watch_list.models import Watch
-from watch_list.inlines import ImageInline, ValueInline
+from watches.models import Watch
+from watches.inlines import ValueInline
 
 
 @admin.register(Watch)
@@ -30,7 +30,7 @@ class WatchAdmin(admin.ModelAdmin):
             'fields': ('created_by', 'created', 'modified',),
         }),
     )
-    inlines = [ValueInline, ImageInline,]
+    inlines = [ValueInline,]
     list_display  = (
         'brand',
         'model',

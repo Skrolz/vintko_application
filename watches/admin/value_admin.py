@@ -1,5 +1,5 @@
 from django.contrib import admin
-from watch_list.models import Value
+from watches.models import Value
 
 
 @admin.register(Value)

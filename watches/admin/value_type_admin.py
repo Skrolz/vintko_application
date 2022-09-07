@@ -1,6 +1,6 @@
 from django.contrib import admin
-from watch_list.models import ValueType
-from watch_list.inlines import ValueInline
+from watches.models import ValueType
+from watches.inlines import ValueInline
 
 
 @admin.register(ValueType)

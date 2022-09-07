@@ -50,14 +50,14 @@ class Value(models.Model):
     )
 
     type = models.ForeignKey(
-        'watch_list.ValueType',
+        'watches.ValueType',
         models.PROTECT,
         blank=False,
         null=False,
     )
 
     watch = models.ForeignKey(
-        'watch_list.Watch',
+        'watches.Watch',
         models.PROTECT,
         blank=True,
         null=True,

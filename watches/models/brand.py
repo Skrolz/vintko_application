@@ -16,7 +16,7 @@ class Brand(models.Model):
     )
 
     country = models.ForeignKey(
-        'watch_list.Country',
+        'watches.Country',
         models.PROTECT,
         blank=False,
         null=False,

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from watch_list.models import MovementType
+from watches.models import MovementType
 
 
 @admin.register(MovementType)
