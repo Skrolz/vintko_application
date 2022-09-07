@@ -19,6 +19,11 @@ class ValueTypeAdmin(admin.ModelAdmin):
     ordering = ['name',]
     readonly_fields = ('modified', 'created',)
 
+    def get_readonly_fields(self, request, obj=None):
+        if request.user.is_superuser:
+            return self.readonly_fields
+        return [f.name for f in self.model._meta.fields]
+
     def save_formset(self, request, form, formset, change):
         instances = formset.save(commit=False)
         for obj in formset.deleted_objects:
