@@ -75,12 +75,6 @@ class Watch(models.Model):
         max_length=512,
     )
 
-    is_visible = models.BooleanField(
-        blank=False,
-        null=False,
-        default=False,
-    )
-
     lug_to_lug = models.IntegerField(
         blank=True,
         null=True,

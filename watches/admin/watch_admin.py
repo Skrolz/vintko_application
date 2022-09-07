@@ -22,7 +22,6 @@ class WatchAdmin(admin.ModelAdmin):
                 'lug_width',
                 'lug_to_lug',),
                 'description',
-                'is_visible',
             )
         }),
         ('Save Info', {
@@ -38,7 +37,6 @@ class WatchAdmin(admin.ModelAdmin):
         'case_material',
         'band_material',
         'case_width',
-        'is_visible',
     )
     ordering = ['brand', 'model',]
     readonly_fields = ('created_by', 'created', 'modified',)
