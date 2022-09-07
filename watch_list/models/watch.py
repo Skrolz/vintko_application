@@ -14,15 +14,15 @@ class Watch(models.Model):
         null=False,
     )
 
-    modified = models.DateTimeField(
-        auto_now=True,
+    created_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        models.PROTECT,
         blank=False,
         null=False,
     )
 
-    modified_by = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        models.PROTECT,
+    modified = models.DateTimeField(
+        auto_now=True,
         blank=False,
         null=False,
     )

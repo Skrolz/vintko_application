@@ -17,7 +17,7 @@ class ValueAdmin(admin.ModelAdmin):
         }),
         ('Save Info', {
             'classes': ('collapse',),
-            'fields': ('modified_by', 'modified', 'created',),
+            'fields': ('created_by', 'created', 'modified',),
         }),
     )
     list_display  = (
@@ -28,8 +28,15 @@ class ValueAdmin(admin.ModelAdmin):
         'date',
     )
     ordering = ['-date',]
-    readonly_fields = ('modified_by', 'modified', 'created',)
+    readonly_fields = ('created_by', 'created', 'modified',)
 
     def save_model(self, request, obj, form, change):
-        obj.modified_by = request.user
+        if obj.id is None:
+            obj.created_by = request.user
         super().save_model(request, obj, form, change)
+
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        if request.user.is_superuser:
+            return qs
+        return qs.filter(created_by=request.user)

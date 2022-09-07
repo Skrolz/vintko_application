@@ -27,7 +27,7 @@ class WatchAdmin(admin.ModelAdmin):
         }),
         ('Save Info', {
             'classes': ('collapse',),
-            'fields': ('modified_by', 'modified', 'created'),
+            'fields': ('created_by', 'created', 'modified',),
         }),
     )
     inlines = [ValueInline, ImageInline,]
@@ -41,10 +41,11 @@ class WatchAdmin(admin.ModelAdmin):
         'is_visible',
     )
     ordering = ['brand', 'model',]
-    readonly_fields = ('modified_by', 'modified', 'created',)
+    readonly_fields = ('created_by', 'created', 'modified',)
 
     def save_model(self, request, obj, form, change):
-        obj.modified_by = request.user
+        if obj.id is None:
+            obj.created_by = request.user
         super().save_model(request, obj, form, change)
 
     def save_formset(self, request, form, formset, change):
@@ -52,6 +53,13 @@ class WatchAdmin(admin.ModelAdmin):
         for obj in formset.deleted_objects:
             obj.delete()
         for instance in instances:
-            instance.modified_by = request.user
+            if instance.id is None:
+                instance.created_by = request.user
             instance.save()
         formset.save_m2m()
+
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        if request.user.is_superuser:
+            return qs
+        return qs.filter(created_by=request.user)

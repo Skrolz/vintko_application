@@ -24,6 +24,7 @@ class ValueTypeAdmin(admin.ModelAdmin):
         for obj in formset.deleted_objects:
             obj.delete()
         for instance in instances:
-            instance.modified_by = request.user
+            if instance.id is None:
+                instance.created_by = request.user
             instance.save()
         formset.save_m2m()

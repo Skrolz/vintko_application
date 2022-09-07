@@ -25,3 +25,9 @@ class ImageAdmin(admin.ModelAdmin):
     )
     ordering = ['watch',]
     readonly_fields = ('modified', 'created',)
+
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        if request.user.is_superuser:
+            return qs
+        return qs.filter(watch__created_by=request.user)
