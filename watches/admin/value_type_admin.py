@@ -5,24 +5,14 @@ from watches.inlines import ValueInline
 
 @admin.register(ValueType)
 class ValueTypeAdmin(admin.ModelAdmin):
-    fieldsets = (
-        (None, {
-            'fields': ('name',)
-        }),
-        ('Save Info', {
-            'classes': ('collapse',),
-            'fields': ('modified', 'created',),
-        }),
-    )
+    fields = ('name',)
     inlines = [ValueInline,]
     list_display  = ('name',)
     ordering = ['name',]
-    readonly_fields = ('modified', 'created',)
 
     def get_readonly_fields(self, request, obj=None):
-        if request.user.is_superuser:
-            return self.readonly_fields
-        return [f.name for f in self.model._meta.fields]
+        if not request.user.is_superuser:
+            return [f.name for f in self.model._meta.fields]
 
     def save_formset(self, request, form, formset, change):
         instances = formset.save(commit=False)

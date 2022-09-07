@@ -4,15 +4,6 @@ from watches.models import MaterialType
 
 @admin.register(MaterialType)
 class MaterialTypeAdmin(admin.ModelAdmin):
-    fieldsets = (
-        (None, {
-            'fields': ('name',)
-        }),
-        ('Save Info', {
-            'classes': ('collapse',),
-            'fields': ('modified', 'created',),
-        }),
-    )
+    fields = ('name',)
     list_display  = ('name',)
     ordering = ['name',]
-    readonly_fields = ('modified', 'created',)
