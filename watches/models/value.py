@@ -36,11 +36,11 @@ class Value(models.Model):
         null=True,
     )
 
-    description = models.TextField(
+    description = models.CharField(
         blank=True,
         null=False,
         default="",
-        max_length=2048,
+        max_length=1024,
     )
 
     is_debit = models.BooleanField(

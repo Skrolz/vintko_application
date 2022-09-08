@@ -17,12 +17,17 @@ class WatchAdmin(admin.ModelAdmin):
                 ('case_material',
                 'band_material',
                 'dial_description',),
-                ('case_width',
+            )
+        }),
+        ('Details', {
+            'classes': ('collapse',),
+            'fields': (
+                'case_width',
                 'case_thickness',
                 'lug_width',
-                'lug_to_lug',),
+                'lug_to_lug',
                 'description',
-            )
+            ),
         }),
         ('Save Info', {
             'classes': ('collapse',),

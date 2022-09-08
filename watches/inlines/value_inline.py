@@ -3,7 +3,7 @@ from watches.models import Value
 
 
 class ValueInline(admin.TabularInline):
-    fields = ('date', 'type', 'description', 'amount', 'is_debit',)
+    fields = ('date', 'type', 'description', 'amount', 'is_debit', 'watch',)
     extra = 1
     model = Value
     ordering = ['-date',]

@@ -52,13 +52,15 @@ class Watch(models.Model):
     case_thickness = models.IntegerField(
         blank=True,
         null=True,
-        choices=MM_CHOICES
+        choices=MM_CHOICES,
+        help_text="mm"
     )
 
     case_width = models.IntegerField(
         blank=True,
         null=True,
-        choices=MM_CHOICES
+        choices=MM_CHOICES,
+        help_text="mm"
     )
 
     description = models.TextField(
@@ -78,13 +80,15 @@ class Watch(models.Model):
     lug_to_lug = models.IntegerField(
         blank=True,
         null=True,
-        choices=MM_CHOICES
+        choices=MM_CHOICES,
+        help_text="mm"
     )
 
     lug_width = models.IntegerField(
         blank=True,
         null=True,
-        choices=MM_CHOICES
+        choices=MM_CHOICES,
+        help_text="mm"
     )
 
     model = models.CharField(
