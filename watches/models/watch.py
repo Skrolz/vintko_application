@@ -1,7 +1,8 @@
 from datetime import date
 from django.conf import settings
 from django.db import models
-
+from django.utils.safestring import mark_safe
+from watches.models.value import Value
 
 class Watch(models.Model):
 
@@ -130,3 +131,17 @@ class Watch(models.Model):
 
     def __str__(self):
         return '{} | {} {} {}'.format(self.id, self.year or '', self.brand, self.reference_number or '',)
+
+    @mark_safe
+    def total_value(self):
+        total = 0
+        values = Value.objects.filter(watch_id=self.id)
+        for value in values:
+            if value.is_debit:
+                total -= value.amount
+            else:
+                total += value.amount
+        if total > 0:
+            return '<span style="color:#ffcccc;">${} spent</span>'.format(total,)
+        else:
+            return '<span style="color:#ccffcc;">${} earned</span>'.format(-total,)

@@ -5,11 +5,11 @@ from watches.inlines import ValueInline
 
 @admin.register(ValueType)
 class ValueTypeAdmin(admin.ModelAdmin):
-    fields = ('name',)
+    fields = ('name', 'total_value',)
     inlines = [ValueInline,]
     list_display  = ('name',)
     ordering = ['name',]
-    readonly_fields = []
+    readonly_fields = ['total_value',]
 
     def get_readonly_fields(self, request, obj=None):
         if not request.user.is_superuser:

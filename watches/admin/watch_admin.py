@@ -11,17 +11,18 @@ class WatchAdmin(admin.ModelAdmin):
                 'year',
                 'brand',
                 ('model',
-                'reference_number',
-                'serial_number',),
+                'reference_number',),
                 'movement_type',
                 ('case_material',
                 'band_material',
                 'dial_description',),
+                'total_value',
             )
         }),
         ('Details', {
             'classes': ('collapse',),
             'fields': (
+                'serial_number',
                 'case_width',
                 'case_thickness',
                 'lug_width',
@@ -44,7 +45,7 @@ class WatchAdmin(admin.ModelAdmin):
         'case_width',
     )
     ordering = ['brand', 'model',]
-    readonly_fields = ('created_by', 'created', 'modified',)
+    readonly_fields = ('created_by', 'created', 'modified', 'total_value',)
 
     def save_model(self, request, obj, form, change):
         if obj.id is None:
